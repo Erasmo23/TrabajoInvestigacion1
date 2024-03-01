@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño y Programación de Software Multiplataforma DPS941 G01T</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="js/clases.js"></script>
+</head>
+
+<body style="padding-top: 70px;">
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <span class="navbar-brand">TheFunkoCrew</span>
+
+            <div class="d-flex">
+                <input class="form-control me-2" id="txtFiltroFunkos" type="text" placeholder="Busqueda Por Nombre"
+                    aria-label="Busqueda Por Nombre" />
+            </div>
+
+            <button class="navbar-toggler bg-danger position-relative" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="bi bi-cart-fill"></span>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger visually-hidden" id="spanCarritoTotalProductos"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+                <div class="offcanvas-header">
+                    <!-- Aqui se cambia dinamicamente el label-->
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+                </div>
+
+                <div class="offcanvas-header position-relative" id="divButtonCancelarCarrito">
+                    <button type="button" onclick="validarCarritoCompraFacturacion();" class="btn btn-primary position-absolute top-50 start-50 translate-middle">Pagar Funkos</button>
+                </div>
+
+                <div class="offcanvas-body" id="divCarrito">
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor donde se muestran la lista de funkos disponibles-->
+    <div class="container-fluid">
+
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="divListFunkos">
+
+        </div>
+
+    </div>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/localStorageLogic.js"></script>
+    <script src="js/InitApp.js"></script>
+</body>
+
+</html>
