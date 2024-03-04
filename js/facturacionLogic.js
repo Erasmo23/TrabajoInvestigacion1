@@ -31,7 +31,7 @@ function cargarResumeFactura() {
                     </div>
                     <div class="d-flex flex-row mt-1">
                       <h6>Total del producto</h6>
-                      <h6 class="fw-bold text-success ms-1"> ${itemValue}</h6>
+                      <h6 class="fw-bold text-success ms-1">$${itemValue}</h6>
                     </div>
                   </div>
                   <div class="p-2 d-flex justify-content-between align-items-center" style="background-color: #eee;">
