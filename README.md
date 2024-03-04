@@ -7,3 +7,7 @@ Proyecto de Carrito de Compras en JavaScript con Facturación
 ### Integrantes:
     1) Josue Erasmo Menendez Zepeda - MZ142582
     2) Luis Eduardo Vásquez Villalta - VV121782
+
+### Enlace del video:
+    https://youtu.be/RR7Z3A_IeK0
+
