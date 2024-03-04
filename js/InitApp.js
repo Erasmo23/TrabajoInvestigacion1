@@ -182,6 +182,12 @@ function borrarProductoCarrito(idFunko){
 
 //funcion para realizar la facturacion
 function validarCarritoCompraFacturacion(){
+
+    if (validarDisponibilidadCarritoByExistencias()){
+        mostrarMensajeError("Error!", "Un producto excede la cantidad disponible del mismo revisar por favor");
+        return;
+    }
+
     Swal.fire({
         html: '&iquest;Est&aacute; seguro que desea pagar para realizar la factura?',
         icon: 'warning',

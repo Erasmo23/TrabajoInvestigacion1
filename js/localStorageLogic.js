@@ -14,9 +14,9 @@ function verificarCargaInformacionFunkos(){
 //Funcion que carga una lista Json en el localStorage para darle dinamismo al aplicativo
 function cargarListaFunkos(){
     const listafunkos = [
-        {id:1, nombre: 'One Piece - Luffy',descripcion:'POP! RED HAWK LUFFY', precio: 15.00, cantidadDisponible: 10, nombreImg: 'OPluffy'},
-        {id:2, nombre: 'One Piece - Nami',descripcion:'POP! ONAMI IN WANO OUTFIT', precio: 12.00, cantidadDisponible: 8, nombreImg: 'OPnami'},
-        {id:3, nombre: 'One Piece - Robin',descripcion:'POP! OROBI IN WANO OUTFIT', precio: 12.00, cantidadDisponible: 8, nombreImg: 'OProbin'},
+        {id:1, nombre: 'One Piece - Luffy',descripcion:'POP! RED HAWK LUFFY', precio: 15.00, cantidadDisponible: 3, nombreImg: 'OPluffy'},
+        {id:2, nombre: 'One Piece - Nami',descripcion:'POP! ONAMI IN WANO OUTFIT', precio: 12.00, cantidadDisponible: 1, nombreImg: 'OPnami'},
+        {id:3, nombre: 'One Piece - Robin',descripcion:'POP! OROBI IN WANO OUTFIT', precio: 12.00, cantidadDisponible: 0, nombreImg: 'OProbin'},
         {id:4, nombre: 'One Piece - Yamato',descripcion:'POP! DELUXE YAMATO (MAN-BEAST FORM)', precio: 30.50, cantidadDisponible: 5, nombreImg: 'OPyamato'},
         {id:5, nombre: 'One Piece - Zoro',descripcion:'POP! RORONOA ZORO (GLOW)', precio: 15.00, cantidadDisponible: 5, nombreImg: 'OPzoro'},
         {id:6, nombre: 'Marvel - Spiderman',descripcion:'POP! JUMBO SPIDER-MAN (MILES MORALES) (BLACK LIGHT)', precio: 45.50, cantidadDisponible: 5, nombreImg: 'MarvelSpiderman'},
@@ -67,6 +67,60 @@ function getCarritoLocalStorage(){
 //Funcion que guardar el JSON en el localStorage
 function saveCarritoCompra(listCarrito) {
     actualizarObjetoEnLocalStorage("listItemsCarrito", listCarrito);
+}
+
+/*
+    Funcion que simula la compra de los items del carrito por lo cual se disminuye la disponibilidad del producto,
+    (Se actualiza los json's del localStorage)
+*/
+function realizarTransaccionCompra(){
+
+    let datosFunkos = getListFunkosLocalStorage();
+    let datosCarrito = getCarritoLocalStorage();
+
+    datosFunkos.forEach(funkoStorage => {
+        
+        datosCarrito.forEach(carritoItem =>{
+
+            if (carritoItem.idFunko == funkoStorage.id){
+                funkoStorage.cantidadDisponible = funkoStorage.cantidadDisponible - carritoItem.cantidad;
+            }
+
+        });
+
+    });
+
+
+    actualizarObjetoEnLocalStorage("listaFunkosDisponibles",datosFunkos);
+    cargarCarritoVacio("[]");
+
+}
+
+/*
+    funcion que valida la disponibilidad de la compra de funkos en el localstorage
+    se retorna true si el usuario ha agregado un funko que en disponibilidad tenga menos de lo que se quiere comprar
+    se retorna false si no hay problema
+*/
+function validarDisponibilidadCarritoByExistencias(){
+    let errorValidacion = false;
+    let datosFunkos = getListFunkosLocalStorage();
+    let datosCarrito = getCarritoLocalStorage();
+
+    datosFunkos.forEach(funkoStorage => {
+        
+        datosCarrito.forEach(carritoItem =>{
+
+            if (carritoItem.idFunko == funkoStorage.id){
+               if (funkoStorage.cantidadDisponible - carritoItem.cantidad < 0){
+                errorValidacion = true;
+               }
+            }
+
+        });
+
+    });
+
+    return errorValidacion;
 }
 
 //Funcion que muestra una alerta de mensaje del tipo Error

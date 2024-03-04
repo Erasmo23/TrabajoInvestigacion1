@@ -51,3 +51,25 @@ function cargarResumeFactura() {
     subtotalLabel.innerHTML = `<span>Sub-total </span> <span class="text-success">$${subTotal}</span>`;
     totalLabel.innerHTML = `<span>Total </span> <span class="text-success">$${sumatotal}</span>`;
 }
+
+function realizarCompraApp(){
+
+  Swal.fire({
+    html: '&iquest;Se realizará la compra de los productos mostrados en pantalla?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0d1b5c',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&iacute;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+    cancelButtonText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+    reverseButtons: true,
+    backdrop:true,
+    allowOutsideClick:false,
+    showLoaderOnConfirm: true,
+    preConfirm: () =>  {
+      realizarTransaccionCompra();
+      location.href = "index.html";
+    }
+  });
+
+}
