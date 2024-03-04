@@ -84,7 +84,10 @@ function agregarListaFunkoAContenedor(lista){
     });
 }
 
-
+/* 
+    Funcion para agregar un funko en el JSON del localStorage si este es el primero se agrega un elemento de la clase ItemCarrito,
+    sino solo se incrementa la propiedad cantidad del objecto en si
+*/
 function agregarFunkoCarrito(idFunko){
     const funkoAdd = getOneFunkoById(idFunko);
 
@@ -92,7 +95,7 @@ function agregarFunkoCarrito(idFunko){
 
     if (carritoCompra.length  == 0){
 
-        let item = new ItemCarrito(funkoAdd.id, funkoAdd.nombreImg, funkoAdd.nombre, funkoAdd.precio, 1);
+        let item = new ItemCarrito(funkoAdd.id, funkoAdd.nombreImg, funkoAdd.nombre, funkoAdd.precio, 1, funkoAdd.descripcion);
         carritoCompra.push(item);
 
     }else{
@@ -107,7 +110,7 @@ function agregarFunkoCarrito(idFunko){
         });
 
         if (!itemCarritoEncontrado){
-            let item = new ItemCarrito(funkoAdd.id, funkoAdd.nombreImg, funkoAdd.nombre, funkoAdd.precio, 1);
+            let item = new ItemCarrito(funkoAdd.id, funkoAdd.nombreImg, funkoAdd.nombre, funkoAdd.precio, 1, funkoAdd.descripcion);
             carritoCompra.push(item);
         }
 
@@ -119,6 +122,10 @@ function agregarFunkoCarrito(idFunko){
 
 }
 
+/*
+    Funcion que carga del localStorage el json que contiene la informacion de los productos que anteriormente
+    se agregaron para mostrarlo en el menu lateral (se construye y elimina dinamicamente en el DOM)
+*/
 function cargarCarritoCompra(){
 
     let elementoPadre = document.getElementById("divCarrito");
@@ -159,6 +166,7 @@ function cargarCarritoCompra(){
     }
 }
 
+//funcion que borra un funko de la lista, y de igual forma del json guardado en el localstorage
 function borrarProductoCarrito(idFunko){
     let listaCarrito = getCarritoLocalStorage();
 
@@ -172,20 +180,22 @@ function borrarProductoCarrito(idFunko){
 
 }
 
-//Funcion que muestra una alerta de mensaje del tipo Error
-function mostrarMensajeError(titulo, descripcion){
+//funcion para realizar la facturacion
+function validarCarritoCompraFacturacion(){
     Swal.fire({
-        icon: "error",
-        title: titulo,
-        text: descripcion
-    });
-}
-
-//Funcion que muestra una alerta de mensaje del tipo success
-function mostrarMensajeCorrecto(titulo, descripcion){
-    Swal.fire({
-        icon: "success",
-        title: titulo,
-        text: descripcion
-    });
+        html: '&iquest;Est&aacute; seguro que desea pagar para realizar la factura?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0d1b5c',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&iacute;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+        cancelButtonText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+        reverseButtons: true,
+        backdrop:true,
+        allowOutsideClick:false,
+        showLoaderOnConfirm: true,
+        preConfirm: () =>  {
+                location.href = "facturacion.html";
+          }
+        });
 }

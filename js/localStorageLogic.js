@@ -64,6 +64,25 @@ function getCarritoLocalStorage(){
     .map(item => new ItemCarrito(item.idFunko, item.imgFunko, item.nombreFunko, item.precioUnitario, item.cantidad));
 }
 
+//Funcion que guardar el JSON en el localStorage
 function saveCarritoCompra(listCarrito) {
     actualizarObjetoEnLocalStorage("listItemsCarrito", listCarrito);
+}
+
+//Funcion que muestra una alerta de mensaje del tipo Error
+function mostrarMensajeError(titulo, descripcion){
+    Swal.fire({
+        icon: "error",
+        title: titulo,
+        text: descripcion
+    });
+}
+
+//Funcion que muestra una alerta de mensaje del tipo success
+function mostrarMensajeCorrecto(titulo, descripcion){
+    Swal.fire({
+        icon: "success",
+        title: titulo,
+        text: descripcion
+    });
 }

@@ -49,12 +49,13 @@ class Funko {
 //Clase ItemCarrito que se ocupa para cada uno de los Funkos que se quieren comprar
 class ItemCarrito {
 
-    constructor (idFunko, imgFunko, nombreFunko, precioUnitario, cantidad ){
+    constructor (idFunko, imgFunko, nombreFunko, precioUnitario, cantidad, descripcionFunko ){
         this.idFunko = idFunko;
         this.imgFunko = imgFunko;
         this.nombreFunko = nombreFunko;
         this.precioUnitario = precioUnitario;
         this.cantidad = cantidad;
+        this.descripcionFunko = descripcionFunko;
     }
 
     get pathImagen(){
